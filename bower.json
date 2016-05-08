@@ -1,0 +1,25 @@
+{
+  "name": "dwiyudha",
+  "description": "wedding invitation app",
+  "main": "index.html",
+  "authors": [
+    "Yosef Yudha Wijaya <yosef@yudhawijaya.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  },
+  "devDependencies": {
+    "Swiper": "swiper#^3.3.1"
+  }
+}

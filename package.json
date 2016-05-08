@@ -1,0 +1,22 @@
+{
+  "name": "dwiyudha",
+  "version": "1.0.0",
+  "description": "wedding invitation app",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yosef Yudha Wijaya <yosef@yudhawijaya.com>",
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "^1.0.4",
+    "grunt-contrib-jade": "^0.15.0",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jade": "^1.11.0",
+    "foundation-sites": "^6.2.0"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,41 @@
+extends _base.jade
+
+block content
+  div.container-main
+    div.swiper-container
+      div.swiper-wrapper
+        div#intro.swiper-slide.intro
+          div.container-intro
+            h2 Pernikahan
+            h1 Dwi &amp; Yudha
+            h3.intro-title-date 13 Juli 2016
+            h3.intro-title-location
+              | Turusan, Kulon Progo, 
+              br
+              | DI Yogyakarta
+            div.txt-center
+              a.link-external(href='https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=Z3ViZ21uNzFjMHY3NGdobzZhdmhxYjE0YWtfMjAxNjA3MTMgc2VtYm95YW4zNUBt&tmsrc=semboyan35%40gmail.com') Tambahkan di Kalender Google
+        div.swiper-slide
+          div#map-church.map
+          div.map-info
+            p.txt-bold
+              span.txt-emphasize 09:00 WIB&nbsp;
+              | Sakramen Pernikahan
+            p Gereja Katolik St Maria Tak Bernoda, Nanggulan
+            div.txt-center
+              a.link-external(href='#') Buka di peta Google
+        div.swiper-slide
+          div#map-home.map
+          div.map-info
+            p.txt-bold
+              span.txt-emphasize 12:00-14:00 WIB&nbsp;
+              | Syukuran
+            p Rumah Bpk Minardjo, Turusan RT 045/RW 021, Pendoworejo, Girimulyo
+            div.txt-center
+              a.link-external(href='#') Buka di peta Google
+            
+      
+      div.swiper-pagination
+      
+      div.swiper-button-prev.desktop-only
+      div.swiper-button-next.desktop-only
