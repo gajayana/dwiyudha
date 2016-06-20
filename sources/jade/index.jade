@@ -14,25 +14,43 @@ block content
               br
               | DI Yogyakarta
             div.txt-center
-              a.link-external(href='https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=Z3ViZ21uNzFjMHY3NGdobzZhdmhxYjE0YWtfMjAxNjA3MTMgc2VtYm95YW4zNUBt&tmsrc=semboyan35%40gmail.com') Tambahkan di Kalender Google
-        div.swiper-slide
-          div#map-church.map
+              span.addtocalendar.atc-style-blue
+                a.atcb-link Tambah ke Kalender
+                var.atc_event
+                  var.atc_date_start 2016-07-13 09:00:00
+                  var.atc_date_end 2016-07-13 14:00:00
+                  var.atc_timezone Asia/Jakarta
+                  var.atc_title Pernikahan Dwi & Yudha
+                  var.atc_description Panduan lokasi di https://dwiyudha.com
+                  var.atc_location Turusan RT 45/RW 21, Pendoworejo, Girimulyo, Kulon progo, DI Yogyakarta
+                  var.atc_organizer Dwi & Yudha
+                  var.atc_organizer_email yosef@yudhawijaya.com
+        
+        div.swiper-slide.pr
+          div#map.map
           div.map-info
             p.txt-bold
               span.txt-emphasize 09:00 WIB&nbsp;
-              | Sakramen Pernikahan
-            p Gereja Katolik St Maria Tak Bernoda, Nanggulan
+              span.txt-title Sakramen Pernikahan
+            p.txt-location-name Gereja Katolik St Maria Tak Bernoda, Nanggulan
             div.txt-center
-              a.link-external(href='#') Buka di peta Google
-        div.swiper-slide
-          div#map-home.map
-          div.map-info
-            p.txt-bold
-              span.txt-emphasize 12:00-14:00 WIB&nbsp;
-              | Syukuran
-            p Rumah Bpk Minardjo, Turusan RT 045/RW 021, Pendoworejo, Girimulyo
-            div.txt-center
-              a.link-external(href='#') Buka di peta Google
+              a.link-external(href='') Buka di peta Google
+          div.map-navigation
+            div.small.button-group
+              a.map-selection.button.secondary(data-id='sakramen') Sakramen
+              a.map-selection.button(data-id='syukuran') Syukuran
+              a#refresh.button
+                img.map-navigation-button-image(src='img/ico_current_position.svg')
+          
+        //- div.swiper-slide
+        //-   div#map-home.map
+        //-   div.map-info
+        //-     p.txt-bold
+        //-       span.txt-emphasize 12:00-14:00 WIB&nbsp;
+        //-       | Syukuran
+        //-     p Rumah Bpk Minardjo, Turusan RT 045/RW 021, Pendoworejo, Girimulyo
+        //-     div.txt-center
+        //-       a.link-external(href='#') Buka di peta Google
             
       
       div.swiper-pagination

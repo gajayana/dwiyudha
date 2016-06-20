@@ -22,12 +22,12 @@ $font-header: 'Great Vibes', cursive;
 @include foundation-grid;
 @include foundation-typography;
 // @include foundation-forms;
-// @include foundation-button;
+@include foundation-button;
 // @include foundation-accordion;
 // @include foundation-accordion-menu;
 // @include foundation-badge;
 // @include foundation-breadcrumbs;
-// @include foundation-button-group;
+@include foundation-button-group;
 // @include foundation-callout;
 // @include foundation-close-button;
 // @include foundation-menu;
@@ -68,6 +68,10 @@ body {
 
 #{headings()} {
     font-family: $font-header;
+}
+
+#refresh {
+    padding: rem-calc(4.19);
 }
 
 .desktop-only {
@@ -145,6 +149,23 @@ body {
     padding: 15px;
 }
 
+.map-navigation {
+    display: inline-block;
+    left: 50%;
+    min-width: rem-calc(200);
+    position: absolute;
+    text-align: center;
+    top: rem-calc(5);
+    vertical-align: top;
+    @include translateX(-50%);
+}
+
+.map-navigation-button-image {
+    display: block;
+    height: rem-calc(24);
+    width: rem-calc(24);
+}
+
 .pr {
     position: relative;
 }
@@ -152,6 +173,7 @@ body {
 .swiper-container {
     height: 100%;
 }
+
 
 .txt-bold {
     font-weight: 700;

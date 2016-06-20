@@ -29,10 +29,21 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Great+Vibes">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
     <link rel="stylesheet" type="text/css" href="components/Swiper/dist/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="https://addtocalendar.com/atc/1.5/atc-style-blue.css">
     <link rel="stylesheet" type="text/css" href="css/dwiyudha.css">
     <link rel="icon" type="image/x-icon" href="">
   </head>
   <body>
+    <script type="text/javascript">
+      (function () {
+      if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
+      if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
+      var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+      s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
+      s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
+      var h = d[g]('body')[0];h.appendChild(s); }})();
+      
+    </script>
     <div class="container-main">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -42,25 +53,31 @@
               <h1>Dwi &amp; Yudha</h1>
               <h3 class="intro-title-date">13 Juli 2016</h3>
               <h3 class="intro-title-location">Turusan, Kulon Progo, <br>DI Yogyakarta</h3>
-              <div class="txt-center"><a href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=Z3ViZ21uNzFjMHY3NGdobzZhdmhxYjE0YWtfMjAxNjA3MTMgc2VtYm95YW4zNUBt&amp;tmsrc=semboyan35%40gmail.com" class="link-external">Tambahkan di Kalender Google</a></div>
+              <div class="txt-center"><span class="addtocalendar atc-style-blue"><a class="atcb-link">Tambah ke Kalender</a>
+                  <var class="atc_event">
+                    <var class="atc_date_start">2016-07-13 09:00:00</var>
+                    <var class="atc_date_end">2016-07-13 14:00:00</var>
+                    <var class="atc_timezone">Asia/Jakarta</var>
+                    <var class="atc_title">Pernikahan Dwi & Yudha</var>
+                    <var class="atc_description">Panduan lokasi di https://dwiyudha.com</var>
+                    <var class="atc_location">Turusan RT 45/RW 21, Pendoworejo, Girimulyo, Kulon progo, DI Yogyakarta</var>
+                    <var class="atc_organizer">Dwi & Yudha</var>
+                    <var class="atc_organizer_email">yosef@yudhawijaya.com</var>
+                  </var></span></div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div id="map-church" class="map"></div>
+          <div class="swiper-slide pr">
+            <div id="map" class="map"></div>
             <div class="map-info">
-              <p class="txt-bold"><span class="txt-emphasize">09:00 WIB&nbsp;</span>Sakramen Pernikahan</p>
-              <p>Gereja Katolik St Maria Tak Bernoda, Nanggulan</p>
-              <div class="txt-center"><a href="#" class="link-external">Buka di peta Google</a></div>
+              <p class="txt-bold"><span class="txt-emphasize">09:00 WIB&nbsp;</span><span class="txt-title">Sakramen Pernikahan</span></p>
+              <p class="txt-location-name">Gereja Katolik St Maria Tak Bernoda, Nanggulan</p>
+              <div class="txt-center"><a href="" class="link-external">Buka di peta Google</a></div>
+            </div>
+            <div class="map-navigation">
+              <div class="small button-group"><a data-id="sakramen" class="map-selection button secondary">Sakramen</a><a data-id="syukuran" class="map-selection button">Syukuran</a><a id="refresh" class="button"><img src="img/ico_current_position.svg" class="map-navigation-button-image"></a></div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div id="map-home" class="map"></div>
-            <div class="map-info">
-              <p class="txt-bold"><span class="txt-emphasize">12:00-14:00 WIB&nbsp;</span>Syukuran</p>
-              <p>Rumah Bpk Minardjo, Turusan RT 045/RW 021, Pendoworejo, Girimulyo</p>
-              <div class="txt-center"><a href="#" class="link-external">Buka di peta Google</a></div>
-            </div>
-          </div>
+          
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev desktop-only"></div>
