@@ -32,7 +32,7 @@
                 icon            : 'ico_home_red.png',
                 coords          : { lat : -7.748422, lng : 110.183863 },
                 title           : 'Syukuran',
-                locationName    : 'Rumah Bpk Minardjo, Turusan RT 45/RW 21, Pendoworejo, Girimulyo',
+                locationName    : 'Rumah Bpk Minarjo, Turusan RT 45/RW 21, Pendoworejo, Girimulyo',
                 zoom            : 16
             },
         ];
@@ -50,33 +50,42 @@
             callback : function () {
                 
                 // define variables
-                var getUserPosition,
+                var directionsDisplay = new google.maps.DirectionsRenderer,
+                    directionsService = new google.maps.DirectionsService,
+                    getUserPosition,
                     map,
                     mapData,
                     mapOptions,
+                    markerInfowindow,
                     markerLocation,
                     populateMapInfo,
-                    selectedMap = 'sakramen';
+                    selectedMap = 'sakramen',
+                    userMarker;
                     
                 getUserPosition = function (mapData) {
+                    // get user current location, need user's permission
                     navigator.geolocation.getCurrentPosition(function (position) {
-                        var directionsDisplay   =   new google.maps.DirectionsRenderer,
-                            directionsService   =   new google.maps.DirectionsService,
-                            userLat             =   position.coords.latitude,
-                            userLng             =   position.coords.longitude,
-                            userMarker          =   new google.maps.Marker({
-                                                        icon        :   {
-                                                                            path : 'M-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0',
-                                                                            fillColor : '#8e44ad',
-                                                                            fillOpacity : 1,
-                                                                            strokeWeight : 0
-                                                                        },
-                                                        map         :   map,
-                                                        position    :   {
-                                                                            lat : userLat,
-                                                                            lng : userLng
-                                                                        }
-                                                    });
+                        var userLat             =   position.coords.latitude,
+                            userLng             =   position.coords.longitude;
+                        
+                        // set user marker position
+                        userMarker  =   new google.maps.Marker({
+                                            icon        :   {
+                                                                path            : 'M-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0',
+                                                                fillColor       : '#8e44ad',
+                                                                fillOpacity     : 1,
+                                                                strokeWeight    : 0
+                                                            },
+                                            map         :   map,
+                                            position    :   {
+                                                                lat : userLat,
+                                                                lng : userLng
+                                                            }
+                                        });
+                                        
+                        // directionsDisplay = new google.maps.DirectionsRenderer;
+                        // directionsService = new google.maps.DirectionsService;
+                            
                         
                         directionsDisplay.setMap(map);
                         directionsDisplay.setOptions({
@@ -109,8 +118,8 @@
                     $('.txt-emphasize').text(t + ' WIB ');
                     $('.txt-title').text(mapData.title);
                     $('.txt-location-name').text(mapData.locationName);
-                    $('.link-external').attr('href', 'https://maps.google.com/?q=' + mapData.coords.lat + ',' + mapData.coords.lng)
-                                       .attr('target', '_blank');
+                    // $('.link-external').attr('href', 'https://maps.google.com/?q=' + mapData.coords.lat + ',' + mapData.coords.lng)
+                    //                   .attr('target', '_blank');
                 };
                     
                 // get initial data
@@ -145,6 +154,13 @@
                     title       : mapData.locationName
                 });
                 
+                // set initial marker infoWindow
+                markerInfowindow = new google.maps.InfoWindow({
+                    content : '<a href="https://maps.google.com/?q=' + mapData.coords.lat + ',' + mapData.coords.lng + '" target="_blank">Buka di peta Google</a>'
+                });
+                
+                markerInfowindow.open(map, markerLocation);
+                
                 // set initial map info
                 populateMapInfo(mapData);
                 
@@ -160,6 +176,8 @@
                         $('.map-selection').each(function (index) {
                             if ( obj.data('id') === $(this).data('id') ) {
                                 
+                                markerInfowindow.close();
+                                 
                                 $(this).addClass('secondary');
                                 
                                 mapData = data[index];
@@ -167,7 +185,7 @@
                                 map.setOptions({
                                     center  : mapData.coords,
                                     zoom    : mapData.zoom
-                                })
+                                });
                                 
                                 markerLocation.setOptions({
                                     icon        : '../img/' + mapData.icon,
@@ -175,8 +193,18 @@
                                     title       : mapData.locationName
                                 });
                                 
-                                getUserPosition(mapData);
+                                // remove any visible user marker                            
+                                if (userMarker.getVisible()) {
+                                    userMarker.setMap(null);
+                                    userMarker = null;
+                                    directionsDisplay.setMap(null);
+                                }
+                                
+                                markerInfowindow.open(map, markerLocation);
+                                markerInfowindow.setContent('<a href="https://maps.google.com/?q=' + mapData.coords.lat + ',' + mapData.coords.lng + '" target="_blank">Buka di peta Google</a>');
                                 populateMapInfo(mapData);
+                                getUserPosition(mapData);
+                                
                                 
                             } else {
                                 $(this).removeClass('secondary');
@@ -189,123 +217,16 @@
                 });
                 
                 $('#refresh').on('click', function () {
+                    // remove any visible user marker                            
+                    if (userMarker.getVisible()) {
+                        userMarker.setMap(null);
+                        userMarker = null;
+                        directionsDisplay.setMap(null);
+                    }
                     getUserPosition(mapData);
                 });
                 
-                // var coordsChurch    = { lat : -7.757304, lng : 110.210794 },
-                //     coordsHome      = { lat : -7.748422, lng : 110.183863 },
-                //     mapChurch,
-                //     mapHome,
-                //     markerChurch,
-                //     markerHome,
-                //     optionsChurch,
-                //     optionsHome,
-                //     guideUser;
-                    
-                // optionsChurch = {
-                //     center              :   coordsChurch,
-                //     mapTypeControl      :   false,
-                //     rotateControl       :   false,
-                //     scaleControl        :   false,
-                //     scrollwheel         :   false,
-                //     streetViewControl   :   false,
-                //     zoom                :   18,
-                //     zoomControl         :   false
-                // };
                 
-                // optionsHome = {
-                //     center          : coordsHome,
-                //     mapTypeControl  : false,
-                //     zoom            : 16
-                // };
-                
-                // mapChurch = new google.maps.Map(document.getElementById('map-church'), optionsChurch);
-                // mapHome = new google.maps.Map(document.getElementById('map-home'), optionsHome);
-                
-                // markerChurch = new google.maps.Marker({
-                //     // animation   : google.maps.Animation.DROP,
-                //     icon        : '../img/ico_church_red.png',
-                //     map         : mapChurch,
-                //     position    : coordsChurch,
-                //     title       : 'Gereja Katolik St Maria Tak Bernoda'
-                // });
-                
-                // markerChurch = new google.maps.Marker({
-                //     // animation   : google.maps.Animation.DROP,
-                //     icon        : '../img/ico_home_red.png',
-                //     map         : mapHome,
-                //     position    : coordsHome,
-                //     title       : 'Rumah Bpk Minardjo'
-                // });
-                
-                // get user current position
-                // if (navigator.geolocation) {
-                //     navigator.geolocation.getCurrentPosition(function (position) {
-                //         // console.log(position);
-                //         var userLat = position.coords.latitude,
-                //             userLng = position.coords.longitude,
-                //             userIcon = {
-                //                 path : 'M-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0',
-                //                 fillColor : '#8e44ad',
-                //                 fillOpacity : 1,
-                //                 strokeWeight : 0
-                //             },
-                //             userMarkerToChurch = new google.maps.Marker({
-                //                 icon : userIcon,
-                //                 map : mapChurch,
-                //                 position : {
-                //                     lat : userLat,
-                //                     lng : userLng
-                //                 }
-                //             }),
-                //             // userMarkerToHome = new google.maps.Marker({
-                //             //     icon : userIcon,
-                //             //     map : mapHome,
-                //             //     position : {
-                //             //         lat : userLat,
-                //             //         lng : userLng
-                //             //     }
-                //             // }),
-                //             directionsServiceChurch = new google.maps.DirectionsService,
-                //             // directionsServiceHome = new google.maps.DirectionsService,
-                //             directionsDisplayChurch = new google.maps.DirectionsRenderer;
-                //             // directionsDisplayHome = new google.maps.DirectionsRenderer;
-                            
-                //         directionsDisplayChurch.setMap(mapChurch);
-                //         directionsDisplayChurch.setOptions({
-                //             suppressMarkers: true
-                //         });
-                //         directionsServiceChurch.route({
-                //             origin : { lat : userLat, lng : userLng },
-                //             destination : coordsChurch,
-                            
-                //             travelMode : google.maps.TravelMode.DRIVING
-                //         }, function (response, status) {
-                //             if (status === google.maps.DirectionsStatus.OK) {
-                //                 directionsDisplayChurch.setDirections(response);
-                //             } else {
-                //                 window.alert('Permohonan arah gagal. Alasan: ' + status);
-                //             }
-                //         });
-                            
-                //         // directionsDisplayHome.setMap(mapHome);
-                //         // directionsDisplayHome.setOptions({
-                //         //     suppressMarkers: true
-                //         // });
-                //         // directionsServiceChurch.route({
-                //         //     origin : { lat : userLat, lng : userLng },
-                //         //     destination : coordsHome,
-                            
-                //         //     travelMode : google.maps.TravelMode.DRIVING
-                //         // }, function (response, status) {
-                //         //     if (status === google.maps.DirectionsStatus.OK) {
-                //         //         directionsDisplayHome.setDirections(response);
-                //         //     } else {
-                //         //         window.alert('Permohonan arah gagal. Alasan: ' + status);
-                //         //     }
-                //         // });
-                //     });
-                // }
                 
             },
             other_params : 'libraries=geometry&key=AIzaSyAFFk-GUknDy4bz4IwyqAziT7zZRPNFNiU&language=id&region=ID' 

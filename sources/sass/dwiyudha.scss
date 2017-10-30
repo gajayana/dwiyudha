@@ -96,6 +96,16 @@ body {
     @include translate(-50%, -50%);
 }
 
+.container-gesture {
+    bottom: rem-calc(50);
+    height: rem-calc(40);
+    left: 50%;
+    position: absolute;
+    width: rem-calc(40);
+    
+    @include translateX(-50%);
+}
+
 .container-main {
     background-color: $colour-white;
     // overflow: hidden;
@@ -119,9 +129,14 @@ body {
     }
 }
 
+.image-block {
+    display: block;
+    width: 100%;
+}
+
 .intro {
-    background-image: url(../img/background-intro-2.jpg);
-    background-position: bottom center;
+    background-image: url(../img/background-index.jpg);
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -146,7 +161,11 @@ body {
 
 .map-info {
     height: 35%;
-    padding: 15px;
+    padding: rem-calc(15);
+    
+    p {
+        margin-bottom: rem-calc(5);
+    }
 }
 
 .map-navigation {
@@ -166,6 +185,16 @@ body {
     width: rem-calc(24);
 }
 
+.mobile-only {
+    @include breakpoint(small medium) {
+        display: block;
+    }
+    
+    @include breakpoint(large) {
+        display: none;
+    }
+}
+
 .pr {
     position: relative;
 }
@@ -181,6 +210,11 @@ body {
 
 .txt-center {
     text-align: center;
+}
+
+.txt-location-name {
+    font-size: rem-calc(14);
+    line-height: 1.48 * rem-calc(14);
 }
 
 .txt-emphasize {
